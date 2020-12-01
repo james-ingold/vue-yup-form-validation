@@ -1,12 +1,16 @@
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  mode: process.env.NODE_ENV,
-  entry: ['./src/vue-plugin.js'],
+  // mode: process.env.NODE_ENV,
+  mode: 'development',
+  optimization: {
+    minimize: false
+  },
+  entry: ['./src/vue-yup-form-validation.js'],
   output: {
-    library: 'VuePlugin',
+    library: 'VueYupFormValidation',
     libraryTarget: 'umd',
-    filename: 'vue-plugin.js',
+    filename: 'index.js',
     globalObject: "typeof self !== 'undefined' ? self : this"
   },
   module: {

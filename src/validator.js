@@ -1,4 +1,4 @@
-import { createFieldWatchers, parseFormData, validate } from './validationHelper';
+import { parseFormData, validate } from './validationHelper';
 
 export default class FormValidator {
   static createMixin() {
@@ -30,7 +30,12 @@ export default class FormValidator {
         validateField(name) {
           const res = validate(parseFormData(this.formElement), this.validationSchema);
           const fieldError = res.errors ? res.errors[name] : null;
-          this.errors[name] = fieldError
+          this.$nextTick(() => {
+            this.errors = {
+              ...this.errors,
+              [name]: fieldError
+            };
+          });
           this.$emit('fieldError', { name, error: fieldError });
         },
         setData(formData) {
@@ -38,7 +43,26 @@ export default class FormValidator {
         },
       },
       mounted() {
-        createFieldWatchers(this.validationSchema, this.modelName)
+        this.formElement.onsubmit = this.onSubmit.bind(this);
+        const handler = event => {
+          const { name, type } = event.target;
+          if (name && !["checkbox", "radio"].includes(type)) {
+            this.validateField(name);
+          }
+        };
+        _.forEach(this.$el.elements, e => {
+          e.addEventListener("input", handler);
+          e.addEventListener("blur", handler);
+        });
+        this.unlisten = () => {
+          _.forEach(this.$el.elements, e => {
+            e.addEventListener("input", handler);
+            e.addEventListener("blur", handler);
+          });
+        }
+      },
+      beforeDestroy() {
+        return this.unlisten && this.unlisten();
       },
       data: () => {
         return {

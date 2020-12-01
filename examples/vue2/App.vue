@@ -19,7 +19,7 @@
           placeholder="Your last name"
           :errors="errors['lastName']"
         />
-        <button class="px-2 py-2 bg-blue-400 text-white rounded" type="submit">
+        <button type="submit">
           Submit
         </button>
       </template>

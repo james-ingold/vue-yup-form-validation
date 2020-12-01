@@ -20,8 +20,6 @@ export default class VueYupFormValidation {
   // }
 
   static register = (Vue, options, store) => {
-    console.log('Here is the options of the component', options);
-    console.log('Here is the store of the app', store);
     // You can use `this.options` property to access options.
 
     // Delete this line if your plug-in doesn't provide any components

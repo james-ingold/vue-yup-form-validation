@@ -1,8 +1,8 @@
 {
   "name": "vue-yup-form-validation",
-  "version": "0.0.1",
-  "description": "Vue Plugin Boilerplate",
-  "main": "dist/vue-yup-form-validation.js",
+  "version": "0.0.13",
+  "description": "Simple Vue + Yup Form Validation",
+  "main": "dist/index.js",
   "types": "src/types/index.d.ts",
   "files": [
     "dist",
@@ -13,7 +13,7 @@
     "test": "exit 0;",
     "storybook": "start-storybook",
     "precommit": "lint-staged",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
     "example:vue2": "poi -s examples/vue2/index.js"
   },
   "lint-staged": {

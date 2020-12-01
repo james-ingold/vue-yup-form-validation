@@ -5,7 +5,7 @@ export const createFieldWatchers = (model, modelName = 'form') => {
   const res = {};
   _.forOwn(model, (field, key) => {
     const watcherKey = `${modelName}.${key}`;
-      res[watcherKey] = watcher = (newValue, oldValue) => {
+      res[watcherKey] = function watcher(newValue, oldValue) {
         if (!oldValue) return
         this.validateField(key);
       };
