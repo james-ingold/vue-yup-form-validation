@@ -18,11 +18,6 @@ npm i vue-yup-form-validation --save
 import VueYupFormValidation from 'vue-yup-form-validation';
 
 Vue.use(VueYupFormValidation);
-
-new Vue({
-  // your vue config
-  yupFormValidationSettings: new VueYupFormValidation()
-});
 ```
 
 ### 3. Use in your components
@@ -78,7 +73,16 @@ slot-scoped errors:
 export default {
   data() {
     return {
-      schema: schema,
+      schema: {
+        firstName: yup
+          .string()
+          .required('First Name is Required')
+          .label('First Name'),
+        lastName: yup
+          .string()
+          .required('Last Name is Required')
+          .label('Last Name')
+      },
       user: {
         firstName: '',
         lastName: ''
