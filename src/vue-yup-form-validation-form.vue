@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     onSubmitValid() {
-      this.$emit('on-submit');
+      this.$emit('on-submitted');
     }
   }
 };
