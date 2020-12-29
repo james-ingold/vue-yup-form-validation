@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Simple Vue Form Validation with Yup</h1>
-    <vue-yup-form :validationSchema="schema" model-name="user" v-on:on-submitted="submitted()">
+    <vue-yup-form :validationSchema="schema" model-name="user" v-on:on-submit="submitted()">
       <template slot-scope="{ errors }">
         <BaseInput
           name="firstName"
