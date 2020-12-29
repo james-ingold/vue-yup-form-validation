@@ -1,5 +1,5 @@
 <template>
-  <form :class="customClass" @submit="onSubmit" :name="name">
+  <form :class="customClass" :name="name">
     <slot v-bind:errors="errors"></slot>
   </form>
 </template>
