@@ -1,10 +1,9 @@
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
-  // mode: process.env.NODE_ENV,
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   optimization: {
-    minimize: false
+    minimize: process.env.NODE_ENV === 'production'
   },
   entry: ['./src/vue-yup-form-validation.js'],
   output: {
