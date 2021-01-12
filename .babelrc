@@ -1,5 +1,14 @@
 {
-  "presets": ["@babel/preset-env"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11"
+        }
+      }
+    ]
+  ],
   "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"],
   "comments": false
 }

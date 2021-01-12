@@ -1,6 +1,6 @@
 {
   "name": "vue-yup-form-validation",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Simple Vue + Yup Form Validation",
   "main": "dist/index.js",
   "types": "src/types/index.d.ts",
@@ -73,6 +73,6 @@
     "vue": "^2.6.10"
   },
   "dependencies": {
-    "yup": "^0.31.0"
+    "yup": "^0.31.1"
   }
 }
