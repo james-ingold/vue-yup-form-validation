@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import { devMode, registerVuexStore } from './utils';
 
 // Import your additional components here

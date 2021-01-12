@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules\/(?!(yup)\/).*/,
+        exclude: /node_modules\/(?!(yup|toposort)\/).*/,
         use: {
           loader: 'babel-loader'
         }
