@@ -50,12 +50,12 @@ export default class FormValidator {
             this.validateField(name);
           }
         };
-        _.forEach(this.$el.elements, e => {
+        [].forEach.call(this.$el.elements, e => {
           e.addEventListener("input", handler);
           e.addEventListener("blur", handler);
         });
         this.unlisten = () => {
-          _.forEach(this.$el.elements, e => {
+          [].forEach.call(this.$el.elements, e => {
             e.addEventListener("input", handler);
             e.addEventListener("blur", handler);
           });

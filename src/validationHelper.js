@@ -1,15 +1,14 @@
 import * as yup from 'yup';
-import _ from 'lodash'
 
 export const createFieldWatchers = (model, modelName = 'form') => {
   const res = {};
-  _.forOwn(model, (field, key) => {
+  for (var key in model) {
     const watcherKey = `${modelName}.${key}`;
       res[watcherKey] = function watcher(newValue, oldValue) {
         if (!oldValue) return
         this.validateField(key);
       };
-    })
+    }
   return res
 };
 
@@ -18,7 +17,7 @@ export const parseFormData = form => {
   if (!form || form.nodeName !== 'FORM') {
     return;
   }
-  const q = _.compact(_.map(form.elements, el => {
+  const q = [].map.call(form.elements, el => {
     if (el.name === '') return
     switch (el.nodeName) {
       case 'INPUT':
@@ -65,19 +64,19 @@ export const parseFormData = form => {
           case 'select-one':
             return [el.name, el.value];
           case 'select-multiple':
-            const j = _.compact(_.map(el.options, opt => {
+            const j = el.options.map(opt => {
               if (opt.selected) return [el.name, opt.value]
-            }))
+            }).filter(Boolean)
             return j
         }
         break;
     }
-  }))
+  }).filter(Boolean)
   const res = {};
   for (const [key, val] of q) {
     if (res[key] === undefined) {
       res[key] = val;
-    } else if (_.isArray(res[key])) {
+    } else if (Array.isArray(res[key])) {
       res[key].push(val);
     } else {
       res[key] = [res[key]];
@@ -88,11 +87,11 @@ export const parseFormData = form => {
 };
 
 export const validate = (formData, formSchema) => {
-  _.forOwn(formSchema, (e, name) => {
-    if(!e._label) {
-      e._label = _.capitalize(name)
-    }
-  });
+  for (var prop in formSchema) {
+    if(!formSchema[prop]._label) {
+        formSchema[prop]._label = capitalize(name)
+      }
+  }
 
   formSchema = yup.object().shape(formSchema);
   const res = {
@@ -122,3 +121,7 @@ export const validate = (formData, formSchema) => {
 export const isValid = (formData, fromSchema) => {
   return !validate(formData, fromSchema).errors;
 };
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
